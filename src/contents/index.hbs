@@ -1,0 +1,83 @@
+{{> head }}
+
+<body>
+
+    <div class="body">
+
+        {{> header }}
+
+        <div role="main" class="main">
+
+            <div class="slider-container light rev_slider_wrapper">
+                <div id="revolutionSlider" class="slider rev_slider" data-plugin-revolution-slider data-plugin-options='{"delay": 9000, "gridwidth": 1170, "gridheight": 500}'>
+                    <ul>
+                        <li data-transition="fade">
+                            <img src="img/slider/cover.jpg"
+                                 alt=""
+                                 data-bgposition="center center"
+                                 data-bgfit="cover"
+                                 data-bgrepeat="no-repeat"
+                                 class="rev-slidebg">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="home-intro" id="home-intro">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-md-9">
+                            <p>
+                                Kembangkan perniagaan anda dengan bantuan <em>Bizsaya.com</em>
+                                <span>Pelbagai kelebihan dan kemudahan yang kami sediakan khusus buat anda.</span>
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="get-started">
+                                <a href="/faq" class="btn btn-lg btn-primary btn-block-xs">Lebih Lanjut</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        {{> footer }}
+
+    </div>
+
+<script src="js/app.min.js"></script>
+<script>
+    $(document).ready(function ()
+    {
+        $('#menu-home').addClass('active');
+    });
+</script>
+
+<script>
+
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: "175920109485664",
+            xfbml: true,
+            version: "v2.6"
+        });
+
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+</script>
+
+</body>
+
+{{> end }}
