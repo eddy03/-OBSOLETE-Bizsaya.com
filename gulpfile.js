@@ -64,6 +64,7 @@ gulp.task('scripts', function() {
     './vendor/rs-plugin/js/jquery.themepunch.tools.min.js',
     './vendor/rs-plugin/js/jquery.themepunch.revolution.min.js',
     './js/theme.init.js',
+    './js/apps.js'
   ])
     .pipe(concat('app.min.js'))
     .pipe(uglify())
