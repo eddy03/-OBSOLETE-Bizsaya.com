@@ -1,7 +1,7 @@
 /*
 Name: 			theme.css
 Written by: 	Okler Themes - (http://www.okler.net)
-Version: 		4.9.3
+Version: 		5.0.0
 */
 html {
 	direction: ltr;
@@ -481,12 +481,19 @@ html:not(.sticky-header-active) #header.header-transparent-sticky-deactive .head
 	}
 
 	#header .header-nav-main nav > ul > li > a.dropdown-toggle:after {
+		border-color: #CCC transparent transparent transparent;
+		border-style: solid;
+		border-width: 4px;
+		content: " ";
+		display: block;
+		float: right;
+		height: 0;
+		margin-right: -10px;
+		margin-top: 5px;
 		position: absolute;
-		font-family: FontAwesome;
-		content: "\f0d7";
-		font-size: 10px;
-		top: 9px;
-		right: 11px;
+		right: 20px;
+		top: 12px;
+		width: 0;
 	}
 
 	#header .header-nav-main nav > ul > li.open > a, #header .header-nav-main nav > ul > li:hover > a {
@@ -530,7 +537,7 @@ html:not(.sticky-header-active) #header.header-transparent-sticky-deactive .head
 	#header .header-nav-main nav > ul > li.dropdown .dropdown-menu li.dropdown-submenu > a:after {
 		border-color: transparent transparent transparent #CCC;
 		border-style: solid;
-		border-width: 5px 0 5px 5px;
+		border-width: 4px 0 4px 4px;
 		content: " ";
 		display: block;
 		float: right;
@@ -4362,7 +4369,6 @@ html.boxed .body {
 	margin: 25px auto;
 	max-width: 1200px;
 	height: auto;
-	overflow: hidden;
 }
 
 html.boxed #header .header-body {

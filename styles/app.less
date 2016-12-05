@@ -1,4 +1,5 @@
 @import (inline) "../vendor/bootstrap/css/bootstrap.min.css";
+@import (inline) "../vendor/font-awesome/css/font-awesome.css";
 @import (inline) "../vendor/animate/animate.min.css";
 @import (inline) "../vendor/simple-line-icons/css/simple-line-icons.min.css";
 @import (inline) "../vendor/owl.carousel/assets/owl.carousel.min.css";
@@ -11,3 +12,65 @@
 @import (inline) "../vendor/rs-plugin/css/settings.css";
 @import (inline) "../vendor/rs-plugin/css/layers.css";
 @import (inline) "../vendor/rs-plugin/css/navigation.css";
+
+@import (inline) "skins/skin-corporate-3.css";
+
+.homepage-bar {
+  margin-bottom: 52px;
+  border-top: 1px solid #e1e1e1;
+  border-bottom: 1px solid #e1e1e1;
+  background-color: #fbfbfb;
+
+  .col-md-4 {
+    padding-top: 20px;
+    padding-bottom: 21px;
+  }
+
+  .bar-icon {
+    font-size: 36px;
+    color: #000;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .bar-textarea {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+    margin-left: 7px;
+  }
+
+  h3 {
+    color: #313131;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  p {
+    font-size: 12px;
+    margin: 0;
+    line-height: 1;
+  }
+}
+@media (min-width: 992px) {
+  .homepage-bar .col-md-4 {
+    text-align: center;
+    border-left: 1px solid #e1e1e1;
+
+    &:first-child {
+      border-left: none;
+    }
+  }
+}
+@media (max-width: 991px) {
+  .homepage-bar .bar-icon {
+    min-width: 36px;
+    text-align: center;
+  }
+}
+
+#header .header-body {
+  border-top: 6px solid #08c;
+}

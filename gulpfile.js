@@ -103,7 +103,7 @@ gulp.task('dev', ['hbs', 'less', 'modernizer', 'scripts', 'fonts', 'img'], funct
     }
   });
 
-  gulp.watch('src/contents/*.hbs', ['hbs'])
+  gulp.watch('src/**/*.hbs', ['hbs'])
   gulp.watch('styles/app.less', ['less'])
 
 })

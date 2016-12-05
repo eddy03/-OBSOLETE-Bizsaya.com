@@ -2,7 +2,7 @@
 /*
 Name: 			theme-elements.css
 Written by: 	Okler Themes - (http://www.okler.net)
-Version: 		4.9.3
+Version: 		5.0.0
 */
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
@@ -1283,6 +1283,49 @@ ul.thumbnail-gallery li {
 
 .masonry .masonry-item img {
 	border-radius: 0 !important;
+}
+
+/* Masonry Loading */
+.masonry-loader {
+	height: auto;
+	overflow: visible;
+	position: relative;
+}
+
+.masonry-loader:after {
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+	content: ' ';
+	background: #FFF;
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 1;
+	opacity: 0;
+}
+
+.masonry-loader .bounce-loader {
+	display: none;
+}
+
+.masonry-loader.masonry-loader-showing {
+	height: 200px;
+	overflow: hidden;
+}
+
+.masonry-loader.masonry-loader-showing:after {
+	opacity: 1;
+}
+
+.masonry-loader.masonry-loader-showing .bounce-loader {
+	display: block;
+}
+
+.masonry-loader.masonry-loader-loaded:after {
+	display: none;
 }
 
 /* Mockup */
@@ -3018,7 +3061,6 @@ html[xmlns] .clearfix {
 .sample-item {
 	text-align: center;
 	max-width: 500px;
-	min-height: 370px;
 	width: 100%;
 	display: inline-block;
 	margin-bottom: 35px;
@@ -3032,7 +3074,7 @@ html[xmlns] .clearfix {
 	margin-bottom: 0;
 	box-shadow: 10px 10px 74px -15px rgba(0, 0, 0, 0.1);
 	position: relative;
-	min-height: 370px;
+	height: 22.8vw;
 	max-height: 370px;
 	display: block !important;
 	overflow: hidden;
@@ -3123,8 +3165,8 @@ html[xmlns] .clearfix {
 
 .sample-item .sample-item-image-wrapper {
 	background: #FFF;
+	height: 22vw;
 	max-height: 370px;
-	height: 370px;
 	max-width: 500px;
 	width: 100%;
 	display: inline-block;
@@ -3152,8 +3194,8 @@ html[xmlns] .clearfix {
 }
 
 .sample-item .sample-item-image {
+	height: 22.8vw;
 	max-height: 370px;
-	height: 370px;
 	max-width: 500px;
 	width: 100%;
 	position: absolute;
@@ -3176,6 +3218,12 @@ html[xmlns] .clearfix {
 	font-size: 14px;
 }
 
+.sample-item h5 .sample-item-info {
+	display: block;
+	font-size: 11px;
+	opacity: 0.6;
+}
+
 .sample-item p {
 	padding: 0;
 	margin: 0;
@@ -3187,6 +3235,25 @@ html[xmlns] .clearfix {
 	background-position: center center;
 }
 
+@media (max-width: 991px) {
+	.sample-item .sample-item-image-wrapper, .sample-item .owl-carousel {
+		height: 33vw;
+	}
+
+	.sample-item .sample-item-image {
+		height: 34vw;
+	}
+}
+
+@media (max-width: 767px) {
+	.sample-item .sample-item-image-wrapper, .sample-item .owl-carousel {
+		height: 63.4vw;
+	}
+
+	.sample-item .sample-item-image {
+		height: 67.5vw;
+	}
+}
 /* Sample Sub Items Lightbox */
 .sample-sub-items-lightbox {
 	margin: 0 auto;
@@ -4061,14 +4128,14 @@ hr.pattern.pattern-2:after, .divider.pattern.pattern-2:after {
 /* Sort Loading */
 .sort-destination-loader {
 	height: auto;
-	overflow: visible;
+	overflow: hidden;
 	position: relative;
 }
 
 .sort-destination-loader:after {
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
-	transition: all 0.5s;
+	-webkit-transition: opacity 0.3s;
+	-moz-transition: opacity 0.3s;
+	transition: opacity 0.3s;
 	content: ' ';
 	background: #FFF;
 	bottom: 0;
@@ -4085,8 +4152,7 @@ hr.pattern.pattern-2:after, .divider.pattern.pattern-2:after {
 }
 
 .sort-destination-loader.sort-destination-loader-showing {
-	height: 200px;
-	overflow: hidden;
+	max-height: 200px;
 }
 
 .sort-destination-loader.sort-destination-loader-showing:after {
@@ -4097,8 +4163,16 @@ hr.pattern.pattern-2:after, .divider.pattern.pattern-2:after {
 	display: block;
 }
 
+.sort-destination-loader.sort-destination-loader-loaded {
+	overflow: visible;
+}
+
 .sort-destination-loader.sort-destination-loader-loaded:after {
 	display: none;
+}
+
+.sort-destination-loader-full-width {
+	overflow: visible;
 }
 
 .sort-destination-loader-full-width:after {
@@ -4107,6 +4181,7 @@ hr.pattern.pattern-2:after, .divider.pattern.pattern-2:after {
 }
 
 .sort-destination-loader-full-width.sort-destination-loader-showing {
+	overflow: hidden;
 	height: 600px;
 }
 
@@ -5167,6 +5242,12 @@ html.boxed .pricing-table .plan, html.boxed .pricing-table h3 {
 	-ms-transform: scale(1.1, 1.1);
 	-o-transform: scale(1.1, 1.1);
 	transform: scale(1.1, 1.1);
+}
+
+.thumb-info.thumb-info-no-zoom img {
+	-webkit-transition: initial;
+	-moz-transition: initial;
+	transition: initial;
 }
 
 .thumb-info.thumb-info-no-zoom:hover img {
