@@ -102,7 +102,11 @@ gulp.task('dev', ['hbs', 'less', 'modernizer', 'scripts', 'fonts', 'img'], funct
   browserSync.init({
     server: {
       baseDir: "./dist"
-    }
+    },
+    ui: {
+      port: 3031
+    },
+    port: 3030
   });
 
   gulp.watch('src/**/*.hbs', ['hbs'])
