@@ -49,7 +49,7 @@ gulp.task('scripts', function() {
     './vendor/jquery/jquery.min.js',
     './vendor/jquery.appear/jquery.appear.min.js',
     './vendor/jquery.easing/jquery.easing.min.js',
-    './vendor/jquery-cookie/jquery-cookie.min.js',
+    // './vendor/jquery-cookie/jquery-cookie.min.js',
     './vendor/bootstrap/js/bootstrap.min.js',
     './vendor/common/common.min.js',
     // './vendor/jquery.validation/jquery.validation.min.js',
@@ -58,8 +58,8 @@ gulp.task('scripts', function() {
     './vendor/jquery.lazyload/jquery.lazyload.min.js',
     './vendor/isotope/jquery.isotope.min.js',
     './vendor/owl.carousel/owl.carousel.min.js',
-    './vendor/magnific-popup/jquery.magnific-popup.min.js',
-    './vendor/vide/vide.min.js',
+    // './vendor/magnific-popup/jquery.magnific-popup.min.js',
+    // './vendor/vide/vide.min.js',
     './js/theme.js',
     './vendor/rs-plugin/js/jquery.themepunch.tools.min.js',
     './vendor/rs-plugin/js/jquery.themepunch.revolution.min.js',
@@ -69,6 +69,7 @@ gulp.task('scripts', function() {
     .pipe(concat('app.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./dist/js'))
+    .pipe(browserSync.stream());
 
 })
 
@@ -106,5 +107,6 @@ gulp.task('dev', ['hbs', 'less', 'modernizer', 'scripts', 'fonts', 'img'], funct
 
   gulp.watch('src/**/*.hbs', ['hbs'])
   gulp.watch('styles/app.less', ['less'])
+  gulp.watch('js/apps.js', ['scripts'])
 
 })
