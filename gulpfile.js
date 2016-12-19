@@ -9,18 +9,22 @@ const cssnano = require('gulp-cssnano')
 const concat = require('gulp-concat')
 const uglify = require('gulp-uglify')
 const browserSync = require('browser-sync').create()
+const sequence = require('gulp-sequence')
+
+let compileTo = 'dev'
+let loginURL = 'http://localhost:3000/auth/facebook'
 
 gulp.task('hbs', function() {
 
-  let data = {
-
-  }
+  let data = {}
 
   let options = {
     ignorePartials: true,
     batch: ['./src/partials'],
     helpers: {
-
+      appurl: function() {
+        return loginURL
+      }
     }
   }
 
@@ -31,7 +35,7 @@ gulp.task('hbs', function() {
       collapseWhitespace: true,
       removeComments: true
     }))
-    .pipe(gulp.dest('./dist'))
+    .pipe(gulp.dest('./' + compileTo))
     .pipe(browserSync.stream());
 
 })
@@ -39,7 +43,7 @@ gulp.task('hbs', function() {
 gulp.task('modernizer', function() {
 
   return gulp.src('./vendor/modernizr/modernizr.min.js')
-    .pipe(gulp.dest('./dist/js'))
+    .pipe(gulp.dest('./'+compileTo+'/js'))
 
 })
 
@@ -68,7 +72,7 @@ gulp.task('scripts', function() {
   ])
     .pipe(concat('app.min.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('./dist/js'))
+    .pipe(gulp.dest('./'+compileTo+'/js'))
     .pipe(browserSync.stream());
 
 })
@@ -78,7 +82,7 @@ gulp.task('less', function() {
   return gulp.src('styles/app.less')
     .pipe(less())
     .pipe(cssnano())
-    .pipe(gulp.dest('./dist/css'))
+    .pipe(gulp.dest('./'+compileTo+'/css'))
     .pipe(browserSync.stream());
 
 })
@@ -86,14 +90,14 @@ gulp.task('less', function() {
 gulp.task('fonts', function() {
 
   return gulp.src('./fonts/**/*')
-    .pipe(gulp.dest('./dist/fonts'))
+    .pipe(gulp.dest('./'+compileTo+'/fonts'))
 
 })
 
 gulp.task('img', function() {
 
   return gulp.src('./img/**/*')
-    .pipe(gulp.dest('./dist/img'))
+    .pipe(gulp.dest('./'+compileTo+'/img'))
 
 })
 
@@ -101,7 +105,7 @@ gulp.task('dev', ['hbs', 'less', 'modernizer', 'scripts', 'fonts', 'img'], funct
 
   browserSync.init({
     server: {
-      baseDir: "./dist"
+      baseDir: './' + compileTo
     },
     ui: {
       port: 3031
@@ -112,5 +116,13 @@ gulp.task('dev', ['hbs', 'less', 'modernizer', 'scripts', 'fonts', 'img'], funct
   gulp.watch('src/**/*.hbs', ['hbs'])
   gulp.watch('styles/app.less', ['less'])
   gulp.watch('js/apps.js', ['scripts'])
+
+})
+
+gulp.task('build', function(cb) {
+
+  compileTo = 'dist'
+  loginURL = 'https://api.bizsaya.com/auth/facebook'
+  return sequence(['hbs', 'less', 'modernizer', 'scripts', 'fonts', 'img'], cb)
 
 })

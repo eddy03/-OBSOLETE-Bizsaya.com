@@ -1,0 +1,80 @@
+{{> head }}
+
+<body>
+
+    <div class="body">
+
+        {{> header }}
+
+            <div role="main" class="main">
+
+                <section class="page-header page-header-color page-header-quaternary page-header-more-padding">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1>Harga pakej <span>Tawaran harga yang disediakan untuk anda.</span></h1>
+                                <ul class="breadcrumb breadcrumb-valign-mid">
+                                    <li><a href="/">Utama</a></li>
+                                    <li class="active">Harga</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="container">
+
+                    <section class="call-to-action call-to-action-default button-centered mb-xl appear-animation animated fadeIn appear-animation-visible">
+                        <div class="call-to-action-content">
+                            <h3>Hanya 1 pakej untuk <strong>semua</strong> fungsi dan modul yang disediakan!</h3>
+                            <p>
+                                Usah pening kepala dan buang masa untuk membuat pilihan. Kini semuanya dibawah satu
+                                <span class="word-rotate" data-plugin-options='{"delay": 2000, "animDelay": 300}' style="margin-top: -5px;">
+                                    <span class="word-rotate-items">
+                                        <span>pakej</span>
+                                        <span>payung</span>
+                                        <span>tetapan</span>
+                                        <span>plan</span>
+                                    </span>
+                                </span>
+                            </p>
+                        </div>
+                    </section>
+
+                    <div class="row">
+                        <div class="pricing-table">
+                            <div class="col-md-4 col-sm-6 center col-md-offset-4 col-sm-offset-3">
+                                <div class="plan most-popular">
+                                    <div class="plan-ribbon-wrapper"><div class="plan-ribbon">Thorbaik</div></div>
+                                    <h3>BOT<span><small><small>RM</small></small>10</span></h3>
+                                    <a class="btn btn-lg btn-primary" href="{{ appurl }}">Daftar</a>
+                                    <ul>
+                                        <li><strong>Tanpa had</strong> tetapan komen</li>
+                                        <li><strong>Tanpa had</strong> tetapan YOBB</li>
+                                        <li><strong>Tanpa had</strong> jumlah produk</li>
+                                        <li>1 Facebook Pages</li>
+                                        <li><strong>Sebulan</strong> tempoh percubaan</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        {{> footer }}
+
+    </div>
+
+    <script src="js/app.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#menu-package').addClass('active');
+        });
+    </script>
+
+</body>
+
+{{> end }}
