@@ -121,7 +121,7 @@ gulp.task('dev', ['hbs', 'less', 'modernizer', 'scripts', 'fonts', 'img'], funct
 
 gulp.task('build', function(cb) {
 
-  compileTo = 'dist'
+  compileTo = 'docs'
   loginURL = 'https://api.bizsaya.com/auth/facebook'
   return sequence(['hbs', 'less', 'modernizer', 'scripts', 'fonts', 'img'], cb)
 
