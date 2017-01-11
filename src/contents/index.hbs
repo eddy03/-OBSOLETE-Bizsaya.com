@@ -3,6 +3,7 @@
 <body>
 
 <div class="body">
+    <div id="fb-root"></div>
 
     {{> header }}
 
@@ -13,7 +14,7 @@
                  data-plugin-options='{"delay": 9000, "gridwidth": 1170, "gridheight": 600}'>
                 <ul>
                     <li data-transition="fade">
-                        <img src="img/slider/cover.jpg"
+                        <img src="https://s3-ap-southeast-1.amazonaws.com/bizsaya-assets/cover.jpg"
                              alt="Halaman utama Bizsaya"
                              data-bgposition="center center"
                              data-bgfit="cover"
@@ -100,7 +101,7 @@
             <div class="row center">
                 <div class="col-md-12">
                     <div style="overflow: hidden;">
-                        <img src="img/responsive.png" style="margin: 0 auto;" class="img-responsive" alt="responsive Bizsaya interface">
+                        <img src="https://s3-ap-southeast-1.amazonaws.com/bizsaya-assets/responsive.png" style="margin: 0 auto;" class="img-responsive" alt="responsive Bizsaya interface">
                     </div>
                 </div>
             </div>
@@ -253,29 +254,8 @@
     });
 </script>
 
-<script>
-
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: "175920109485664",
-            xfbml: true,
-            version: "v2.6"
-        });
-
-    };
-
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[ 0 ];
-        if (d.getElementById(id)) { return; }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-</script>
-
 {{> google_analytics }}
+{{> fb_scripts }}
 
 </body>
 
