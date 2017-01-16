@@ -119,6 +119,14 @@ gulp.task('dev', ['hbs', 'less', 'modernizer', 'scripts', 'fonts', 'img'], funct
 
 })
 
+gulp.task('staging', function(cb) {
+
+  compileTo = 'dev'
+  loginURL = 'https://devapi.bizsaya.com/auth/facebook'
+  return sequence(['hbs', 'less', 'modernizer', 'scripts', 'fonts', 'img'], cb)
+
+})
+
 gulp.task('build', function(cb) {
 
   compileTo = 'dist'
