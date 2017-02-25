@@ -47,6 +47,13 @@ gulp.task('modernizer', function() {
 
 })
 
+gulp.task('firebase', function() {
+
+  return gulp.src('./src/firebase.js')
+    .pipe(gulp.dest('./' + compileTo + '/js'))
+
+})
+
 gulp.task('scripts', function() {
 
   return gulp.src([
@@ -101,7 +108,7 @@ gulp.task('img', function() {
 
 })
 
-gulp.task('dev', ['hbs', 'less', 'modernizer', 'scripts', 'fonts', 'img'], function() {
+gulp.task('dev', ['hbs', 'less', 'modernizer', 'scripts', 'fonts', 'img', 'firebase'], function() {
 
   browserSync.init({
     server: {
@@ -119,10 +126,18 @@ gulp.task('dev', ['hbs', 'less', 'modernizer', 'scripts', 'fonts', 'img'], funct
 
 })
 
+gulp.task('staging', function(cb) {
+
+  compileTo = 'dev'
+  loginURL = 'https://devapi.bizsaya.com/auth/facebook'
+  return sequence(['hbs', 'less', 'modernizer', 'firebase', 'scripts', 'fonts', 'img'], cb)
+
+})
+
 gulp.task('build', function(cb) {
 
   compileTo = 'dist'
   loginURL = 'https://api.bizsaya.com/auth/facebook'
-  return sequence(['hbs', 'less', 'modernizer', 'scripts', 'fonts', 'img'], cb)
+  return sequence(['hbs', 'less', 'modernizer', 'scripts', 'firebase', 'fonts', 'img'], cb)
 
 })
