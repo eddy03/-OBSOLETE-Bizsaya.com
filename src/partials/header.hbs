@@ -32,7 +32,7 @@
                                             <a href="/package.html">Harga</a>
                                         </li>
                                         <li class="">
-                                            <a href="{{ appurl }}">Log Masuk / Daftar</a>
+                                            <a href="{{ appurl }}" onclick="return disabled()">Log Masuk / Daftar</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -44,3 +44,10 @@
         </div>
     </div>
 </header>
+
+<script>
+    function disabled(e) {
+      alert('Aplikasi sedang dinaik taraf. Sila log masuk pada pagi esok 26/02/2017. Maaf atas kesulitan ini.')
+        return false
+    }
+</script>
