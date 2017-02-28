@@ -323,45 +323,45 @@
             contacts: 0
         }
 
-        FireBaseApp.database().ref('realtime_administrator').on('value', values => {
+        FireBaseApp.database().ref('realtime_administrator').on('value', function(values) {
 
-          if(values.val()) {
+            if(values.val()) {
                 var val = values.val()
 
-              $('#stats-pages').countTo({
-                  from: starting.pages,
-                  to: (val.pagesStats)? val.pagesStats.length : 0,
-                  speed: 10000,
-                  onComplete: function(value) {
-                      starting.pages = value
-                  }
-              })
-              $('#stats-notification').countTo({
-                  from: starting.notification,
-                  to: val.totalRx,
-                  speed: 10000,
-                  onComplete: function(value) {
-                      starting.notification = value
-                  }
-              })
-              $('#stats-response').countTo({
-                  from: starting.response,
-                  to: val.totalTx,
-                  speed: 10000,
-                  onComplete: function(value) {
-                      starting.response = value
-                  }
-              })
-              $('#stats-contacts').countTo({
-                  from: starting.contacts,
-                  to: val.totalContactProcess,
-                  speed: 10000,
-                  onComplete: function(value) {
-                      starting.contacts = value
-                  }
-              })
+                $('#stats-pages').countTo({
+                    from: starting.pages,
+                    to: val.totalPages,
+                    speed: 2000,
+                    onComplete: function(value) {
+                        starting.pages = val.totalPages
+                    }
+                })
+                $('#stats-notification').countTo({
+                    from: starting.notification,
+                    to: val.totalRx,
+                    speed: 2000,
+                    onComplete: function(value) {
+                        starting.notification = val.totalRx
+                    }
+                })
+                $('#stats-response').countTo({
+                    from: starting.response,
+                    to: val.totalTx,
+                    speed: 2000,
+                    onComplete: function(value) {
+                        starting.response = val.totalTx
+                    }
+                })
+                $('#stats-contacts').countTo({
+                    from: starting.contacts,
+                    to: val.totalContactProcess,
+                    speed: 2000,
+                    onComplete: function(value) {
+                        starting.contacts = val.totalContactProcess
+                    }
+                })
 
-          }
+            }
 
         })
     });
