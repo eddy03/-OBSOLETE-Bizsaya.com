@@ -25,14 +25,28 @@
                                         <li id="menu-home">
                                             <a href="/">Utama</a>
                                         </li>
-                                        <li id="menu-offer">
-                                            <a href="/benefits.html">Kelebihan</a>
+                                        <li class="dropdown" id="menu-module">
+                                            <a class="dropdown-toggle" href="#">
+                                                Modul
+                                                <i class="fa fa-caret-down"></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li id="menu-module-comment">
+                                                    <a href="/comment.html">Komen</a>
+                                                </li>
+                                                <li id="menu-module-inbox">
+                                                    <a href="/inbox.html">Inbox</a>
+                                                </li>
+                                                <li id="menu-module-broadcast">
+                                                    <a href="/broadcast.html">Broadcast</a>
+                                                </li>
+                                            </ul>
                                         </li>
                                         <li id="menu-package">
                                             <a href="/package.html">Harga</a>
                                         </li>
                                         <li class="">
-                                            <a href="{{ appurl }}">Log Masuk / Daftar</a>
+                                            <a href="{{ appurl }}" style="border: 1px solid #08c; border-radius: 3px; margin-top: -2px;">Log Masuk / Daftar</a>
                                         </li>
                                     </ul>
                                 </nav>
