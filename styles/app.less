@@ -1,9 +1,9 @@
 @import (inline) "../vendor/bootstrap/css/bootstrap.min.css";
 @import (inline) "../vendor/font-awesome/css/font-awesome.css";
 @import (inline) "../vendor/animate/animate.min.css";
-@import (inline) "../vendor/simple-line-icons/css/simple-line-icons.min.css";
-@import (inline) "../vendor/owl.carousel/assets/owl.carousel.min.css";
-@import (inline) "../vendor/owl.carousel/assets/owl.theme.default.min.css";
+//@import (inline) "../vendor/simple-line-icons/css/simple-line-icons.min.css";
+//@import (inline) "../vendor/owl.carousel/assets/owl.carousel.min.css";
+//@import (inline) "../vendor/owl.carousel/assets/owl.theme.default.min.css";
 
 @import (inline) "theme.css";
 @import (inline) "theme-elements.css";
@@ -15,7 +15,8 @@
 @import (inline) "skins/skin-corporate-3.css";
 
 .homepage-bar {
-  margin-bottom: 52px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   border-top: 1px solid #e1e1e1;
   border-bottom: 1px solid #e1e1e1;
   background-color: #fbfbfb;
@@ -73,6 +74,20 @@
   }
 }
 
+.dropdown-menu {
+  > li {
+    
+    &.active {
+
+      a {
+        color: #FFF !important;
+      }
+
+    }
+    
+  }
+}
+
 @media (min-width: 992px) {
   .homepage-bar .col-md-4 {
     text-align: center;
@@ -84,6 +99,25 @@
   }
 }
 @media (max-width: 991px) {
+
+  h2 {
+    font-size: 1.8em;
+    line-height: 30px;
+  }
+  .lead {
+    font-size: 1.2em;
+    text-align: justify;
+  }
+
+  .counter {
+    strong {
+      font-size: 2em;
+    }
+    label {
+      font-size: 1.2em;
+    }
+  }
+
   .homepage-bar .bar-icon {
     min-width: 36px;
     text-align: center;

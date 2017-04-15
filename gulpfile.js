@@ -24,6 +24,10 @@ gulp.task('hbs', function() {
     helpers: {
       appurl: function() {
         return loginURL
+      },
+      currentYear: function() {
+        let dt = new Date()
+        return dt.getFullYear()
       }
     }
   }

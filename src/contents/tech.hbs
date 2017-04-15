@@ -12,10 +12,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Harga pakej <span>Tawaran harga yang disediakan untuk anda.</span></h1>
+                        <h1>Disebalik Tabir</h1>
                         <ul class="breadcrumb breadcrumb-valign-mid">
                             <li><a href="/">Utama</a></li>
-                            <li class="active">Harga</li>
+                            <li class="active">Disebalik Tabir</li>
                         </ul>
                     </div>
                 </div>
@@ -24,6 +24,115 @@
 
         <div class="container">
 
+            <p>
+                Bizsaya dibangunkan oleh <a href="http://dontpushpush.com">Saya</a>. Kami percaya, Menghasilkan sebuah aplikasi
+                yang efektif serta mudah digunakan adalah kunci kepada aplikasi yang berjaya.
+            </p>
+
+            <p class="lead">
+                Teknologi Front-end
+            </p>
+
+            <p>
+                Front-end Bizsaya dibangunkan menggunakan prinsip Single Page Application (SPA) yang dikuasakan oleh
+                <a href="https://facebook.github.io/react/">ReactJs</a>.
+                Dengan menggunakan prinsip ini, Kami di Bizsaya dapat mengurangkan load usage di "server"(komputer pelayan) kami.
+            </p>
+
+            <p>
+                ReactJs merupakan sebuah javascript Library yang digunakan untuk menghasilkan "View" yang boleh diguna semula.
+                Ini memudahkan untuk menghasilkan antaramuka aplikasi Bizsaya yang lebih kemas serta "Repeative".
+            </p>
+
+            <p>
+                Selain itu juga, Dengan menggunakan prinsip SPA. Jumlah load usage dapat diminimalkan dan seterusnya mengurangkan jumlah
+                bandwidth usage. Bagi memastikan kelajuan aplikasi Bizsaya berterusan berada didalam maximum, Kami menggunakan
+                <a href="https://firebase.google.com/">Google Firebase Hosting</a> untuk "serve" semua request ke SPA kami.
+            </p>
+            
+            <p class="lead">
+                Teknologi Back-end
+            </p>
+            
+            <p>
+                Di Bizsaya, kami menggunakan teknologi <a href="https://nodejs.org/en/">Node.js</a> bagi memproses kesemua maklumat yang datang ke aplikasi Bizsaya.
+                Kami memisahkan diantara code base bagi API applikasi dan juga code base bagi Realtime Webhook Facebook Bizsaya. Dengan menggunakan cara ini,
+                Kami dapat meminimalkan "coupling" dan seterusnya mengelakkan daripada satu aplikasi menganggu aplikasi yang lain.
+            </p>
+
+            <p>
+                Selain itu juga, Kami menggunakan javascript library <a href="http://bluebirdjs.com/docs/getting-started.html">Bluebirdjs</a> untuk mengelakkan daripada
+                system crash yang menyebabkan ganguan kepada proses-proses yang sedang diproses didalam satu aplikasi. Well, Rasanya anda semua tahu node.js adalah single threaded.
+                Dan sebarang bug/crash/exception yang tidak dicatch properly boleh menyebabkan aplikasi anda restart dan seterusnya menjejaskan proses lain didalam queue.
+            </p>
+
+            <p class="lead">
+                Database / Pengkalan data
+            </p>
+
+            <p>
+                Kami di Bizsaya menggunakan <a href="https://cloud.google.com/">Google Cloud Platform</a> untuk menyimpan kesemua data-data mengenai Bizsaya didalam produk GCP datastore.
+                Dengan menggunakan teknologi NoSQL, ini membolehkan aplikasi Bizsaya berkembangan dengan lebih mudah serta lebih pantas.
+            </p>
+
+            <p>
+                Selain itu juga, Bizsaya menggunakan <a href="https://redis.io/">Redis</a> untuk menyimpan datacache yang secara tidak langsung menyebabkan aplikasi Realtime Webhook Facebook
+                Bizsaya dapat memproses maklumat dengan pantas!
+            </p>
+
+            <div class="lead">
+                Version Control
+            </div>
+
+            <p>
+                <a href="https://git-scm.com/">git</a>. Dihostkan di <a href="https://github.com">Github</a>
+            </p>
+
+            <div class="lead">
+                Teknologi Paparan Semasa / Realtime
+            </div>
+
+            <p>
+                Terdapat 2 teknologi paparan semasa yang digunakan oleh Bizsaya, Cuma hanya 1 yang digunakan khusus untuk kesemua ekosistem Bizsaya.
+            </p>
+
+            <p>
+                Kami menggunakan <a href="https://firebase.google.com/">Firebase Realtime Database</a> untuk menyimpan log paparan semasa kami dan juga statistik. Oleh kerana Firebase adalah sebahagian daripada google.
+                Ini memudahkan kami untuk menguruskan integrasi dengan teknologi-teknologi yang lain
+            </p>
+            
+            <p>
+                Bizsaya juga menggunakan paparan semasa daripada <a href="https://pusher.com/">Pusher</a> untuk memproses log Semasa bagi urusan analisa dan log
+            </p>
+
+            <div class="lead">
+                Logging / Metric
+            </div>
+
+            <p>
+                Bizsaya menggunakan <a href="https://sentry.io/welcome/">Sentry</a> untuk log sebarang error didalam aplikasi secara automatik.
+            </p>
+
+            <hr>
+
+            <p>
+                Gambar dibawah memaparkan paparan semasa aplikasi Bizsaya. API adalah code base bagi aplikasi Utama Bizsaya. Manakala, WEBHOOK adalah untuk
+                code base Realtime Webhook Facebook yang diterima oleh Bizsaya.
+            </p>
+
+            <p>
+                Di Webhook, pada Rate 120 Request Per Minutes, CPU Usage Bizsaya masih rendah serta penggunaan Memory yang juga masih rendah. Ini membuktikan kami
+                mampu untuk handle lebih banyak pelanggan bagi satu komputer pelayan kami dan seterusnya memastikan kos Bizsaya adalah rendah.
+            </p>
+
+            <div class="fb-post" data-href="https://www.facebook.com/perniagaansaya/posts/256014698140803:0" data-width="auto" data-show-text="true"><blockquote cite="https://www.facebook.com/perniagaansaya/posts/256014698140803:0" class="fb-xfbml-parse-ignore"><p>Alhamdullilah, Proses broadcast buat pertama kali aplikasi Bizsaya berjalan dengan lancar. Sebanyak 293 fans telah...</p>Posted by <a href="https://www.facebook.com/perniagaansaya/">Bizsaya</a> on&nbsp;<a href="https://www.facebook.com/perniagaansaya/posts/256014698140803:0">Thursday, March 30, 2017</a></blockquote></div>
+
+            <hr>
+
+            <small>
+                Sekiranya anda berminat untuk mengetahui lebih lanjut mengenai teknologi Bizsaya, Feel Free untuk berborak dengan <a href="http://dontpushpush.com">Saya</a>
+            </small>
+            
         </div>
 
     </div>
