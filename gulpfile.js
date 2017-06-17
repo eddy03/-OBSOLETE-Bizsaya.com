@@ -13,6 +13,7 @@ const sequence = require('gulp-sequence')
 
 let compileTo = 'dev'
 let loginURL = 'http://localhost:3000/auth/facebook'
+let apiURL = 'http://localhost:3000/'
 
 gulp.task('hbs', function() {
 
@@ -24,6 +25,9 @@ gulp.task('hbs', function() {
     helpers: {
       appurl: function() {
         return loginURL
+      },
+      apiurl: function () {
+        return apiURL
       },
       currentYear: function() {
         let dt = new Date()
@@ -88,6 +92,16 @@ gulp.task('scripts', function() {
 
 })
 
+gulp.task('prospekscript', function () {
+
+  return gulp.src('./js/prospects.js')
+    .pipe(concat('sheet.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('./'+compileTo+'/js'))
+    .pipe(browserSync.stream());
+
+})
+
 gulp.task('less', function() {
 
   return gulp.src('styles/app.less')
@@ -112,7 +126,7 @@ gulp.task('img', function() {
 
 })
 
-gulp.task('dev', ['hbs', 'less', 'modernizer', 'scripts', 'fonts', 'img', 'firebase'], function() {
+gulp.task('dev', ['hbs', 'less', 'modernizer', 'scripts', 'prospekscript', 'fonts', 'img', 'firebase'], function() {
 
   browserSync.init({
     server: {
@@ -127,6 +141,7 @@ gulp.task('dev', ['hbs', 'less', 'modernizer', 'scripts', 'fonts', 'img', 'fireb
   gulp.watch('src/**/*.hbs', ['hbs'])
   gulp.watch('styles/app.less', ['less'])
   gulp.watch('js/apps.js', ['scripts'])
+  gulp.watch('js/prospects.js', ['prospekscript'])
 
 })
 
@@ -134,7 +149,7 @@ gulp.task('staging', function(cb) {
 
   compileTo = 'dev'
   loginURL = 'https://devapi.bizsaya.com/auth/facebook'
-  return sequence(['hbs', 'less', 'modernizer', 'firebase', 'scripts', 'fonts', 'img'], cb)
+  return sequence(['hbs', 'less', 'modernizer', 'firebase', 'scripts', 'prospekscript', 'fonts', 'img'], cb)
 
 })
 
@@ -142,6 +157,7 @@ gulp.task('build', function(cb) {
 
   compileTo = 'dist'
   loginURL = 'https://api.bizsaya.com/auth/facebook'
-  return sequence(['hbs', 'less', 'modernizer', 'scripts', 'firebase', 'fonts', 'img'], cb)
+  apiURL = 'https://api.bizsaya.com/'
+  return sequence(['hbs', 'less', 'modernizer', 'scripts', 'prospekscript', 'firebase', 'fonts', 'img'], cb)
 
 })
