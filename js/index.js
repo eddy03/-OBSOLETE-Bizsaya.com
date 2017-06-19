@@ -19,6 +19,9 @@ $(document).ready(function () {
       var text = 'Akaun anda telah tamat tempoh aktif ataupun dibatalkan. Sila buat pembayaran terlebih dahulu atau menghubungi kami di laman FB Bizsaya'
       text += '<br class="hidden-md hidden-lg" /><span class="hidden-xs hidden-sm">&nbsp; &nbsp; &nbsp;</span><div class="fb-messengermessageus" messenger_app_id="175920109485664" page_id="136294510112823" color="blue" size="xlarge" > </div> '
       $('#injectNotification').append('<div class="alert alert-danger"><div class="container">'+text+'</div></div>')
+    } else if(value === 'err=400') {
+      var text = 'Oopss. Anda tidak membenarkan beberapa akses yang Bizsaya minta. Sila benarkan akses untuk Bizsaya automasikan FB page anda. Sila cuba semula'
+      $('#injectNotification').append('<div class="alert alert-info"><div class="container">'+text+'</div></div>')
     }
   })
 
