@@ -1,0 +1,28 @@
+{
+  "name": "bizsayadotcom_portal",
+  "description": "Bizsaya.com portal source code",
+  "main": "gulpfile.js",
+  "authors": [
+    "Edi Abdul Rahman <eddytech03@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://bizsaya.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "sweetalert2": "^6.6.5",
+    "crypto-js": "^3.1.9",
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7",
+    "animate.css": "^3.5.2",
+    "moment": "^2.18.1",
+    "lodash": "^4.17.4",
+    "superagent": "^3.5.1"
+  }
+}

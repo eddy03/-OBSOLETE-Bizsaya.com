@@ -11,13 +11,13 @@ const uglify = require('gulp-uglify')
 const browserSync = require('browser-sync').create()
 const sequence = require('gulp-sequence')
 
-let compileTo = 'dev'
-let loginURL = 'http://localhost:3000/auth/facebook'
-let apiURL = 'http://localhost:3000/'
+var compileTo = 'dev'
+var loginURL = 'http://localhost:3000/auth/facebook'
+var apiURL = 'http://localhost:3000/'
 
 gulp.task('hbs', function() {
-  let data = {}
-  let options = {
+  var data = {}
+  var options = {
     ignorePartials: true,
     batch: ['./src/partials'],
     helpers: {
@@ -28,7 +28,7 @@ gulp.task('hbs', function() {
         return apiURL
       },
       currentYear: function() {
-        let dt = new Date()
+        var dt = new Date()
         return dt.getFullYear()
       }
     }
@@ -41,7 +41,6 @@ gulp.task('hbs', function() {
       removeComments: true
     }))
     .pipe(gulp.dest('./' + compileTo))
-    .pipe(browserSync.stream());
 })
 
 gulp.task('modernizer', function() {
@@ -85,7 +84,10 @@ gulp.task('prospekscript', function () {
 })
 
 gulp.task('less', function() {
-  return gulp.src('styles/app.less')
+  return gulp.src([
+    'styles/app.less',
+    'styles/buying.less'
+  ])
     .pipe(less())
     .pipe(cssnano())
     .pipe(gulp.dest('./'+compileTo+'/css'))
@@ -109,7 +111,22 @@ gulp.task('indexpage', function () {
     .pipe(gulp.dest('./'+compileTo+'/js'))
 })
 
-gulp.task('dev', ['hbs', 'less', 'modernizer', 'scripts', 'prospekscript', 'fonts', 'img', 'firebase', 'indexpage'], function() {
+gulp.task('buypage', function () {
+  return gulp.src([
+    './bower_components/jquery/dist/jquery.slim.js',
+    './bower_components/bootstrap/dist/js/bootstrap.min.js',
+    './bower_components/lodash/dist/lodash.min.js',
+    './bower_components/moment/moment.js',
+    // './bower_components/superagent/lib/client.js',
+    './bower_components/sweetalert2/dist/sweetalert2.min.js',
+    './bower_components/vue/dist/vue.min.js',
+    './js/buying.js'
+  ]).pipe(concat('buying.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('./'+compileTo+'/js'))
+})
+
+gulp.task('dev', ['hbs', 'less', 'modernizer', 'scripts', 'prospekscript', 'fonts', 'img', 'firebase', 'indexpage', 'buypage'], function() {
   browserSync.init({
     server: { baseDir: './' + compileTo },
     ui: { port: 3031 },
@@ -118,20 +135,18 @@ gulp.task('dev', ['hbs', 'less', 'modernizer', 'scripts', 'prospekscript', 'font
 
   gulp.watch('src/**/*.hbs', ['hbs'])
   gulp.watch('styles/app.less', ['less'])
+  gulp.watch('styles/buying.less', ['less'])
   gulp.watch('js/apps.js', ['scripts'])
   gulp.watch('js/prospects.js', ['prospekscript'])
   gulp.watch('js/index.js', ['indexpage'])
-})
-
-gulp.task('staging', function(cb) {
-  compileTo = 'dev'
-  loginURL = 'https://devapi.bizsaya.com/auth/facebook'
-  return sequence(['hbs', 'less', 'modernizer', 'firebase', 'scripts', 'prospekscript', 'fonts', 'img', 'indexpage'], cb)
+  gulp.watch('js/buying.js', ['buypage'])
+  gulp.watch('./'+compileTo+'/*.html').on('change', browserSync.reload)
+  gulp.watch('./'+compileTo+'/js/*.js').on('change', browserSync.reload)
 })
 
 gulp.task('build', function(cb) {
   compileTo = 'dist'
   loginURL = 'https://api.bizsaya.com/auth/facebook'
   apiURL = 'https://api.bizsaya.com/'
-  return sequence(['hbs', 'less', 'modernizer', 'scripts', 'prospekscript', 'firebase', 'fonts', 'img', 'indexpage'], cb)
+  return sequence(['hbs', 'less', 'modernizer', 'scripts', 'prospekscript', 'firebase', 'fonts', 'img', 'indexpage', 'buypage'], cb)
 })

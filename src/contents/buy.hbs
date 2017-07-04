@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Maklumat pembelian anda</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/buying.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<script>
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'Messenger'));
+</script>
+
+    <div class="container" id="app">
+
+        <div class="page-header" style="margin-top: 0px; padding-top: 0px">
+            <h1 style="margin-top: 0px; padding-top: 0px">
+                <small>Maklumat pembelian anda</small>
+            </h1>
+        </div>
+
+        <form>
+
+            <div>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#detail" aria-controls="detail" role="tab" data-toggle="tab">
+                            <i class="fa fa-vcard-o fa-fw"></i>
+                            <span class="hidden-xs hidden-sm">Maklumat anda</span>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#product" aria-controls="product" role="tab" data-toggle="tab">
+                            <i class="fa fa-cubes fa-fw"></i>
+                            <span class="hidden-xs hidden-sm">Maklumat produk</span>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#payment" aria-controls="payment" role="tab" data-toggle="tab">
+                            <i class="fa fa-money fa-fw"></i>
+                            <span class="hidden-xs hidden-sm">Maklumat pembayaran</span>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#confirmation" aria-controls="confirmation" role="tab" data-toggle="tab">
+                            <i class="fa fa-check fa-fw"></i>
+                            <span class="hidden-xs hidden-sm">Pengesahan</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="detail" style="padding-top: 15px">
+
+                        <div class="form-group">
+                            <label for="form-email">Alamat emel</label>
+                            <input type="email" class="form-control" id="form-email" placeholder="Emel untuk resit pembelian">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-fullname">Nama penuh <small><sup><span style="color: red;">*</span></sup></small></label>
+                            <input type="text" class="form-control" id="form-fullname" placeholder="Nama penuh">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-phone">Nombor telefon <small><sup><span style="color: red;">*</span></sup></small></label>
+                            <input type="number" class="form-control" id="form-phone" placeholder="Nombor telefon untuk dihubungi">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-address">Alamat penghantaran <small><sup><span style="color: red;">*</span></sup></small></label>
+                            <textarea name="form-address" id="form-address" class="form-control" rows="4" style="resize: none;"></textarea>
+                        </div>
+                        <div class="form-group text-right">
+                            <button type="button" class="btn btn-primary next-step" data-next="product">Seterusnya</button>
+                        </div>
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="product" style="padding-top: 15px">...</div>
+                    <div role="tabpanel" class="tab-pane fade" id="payment" style="padding-top: 15px">...</div>
+                    <div role="tabpanel" class="tab-pane fade" id="confirmation" style="padding-top: 15px">...</div>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+
+<script src="js/buying.min.js"></script>
+</body>
+</html>
