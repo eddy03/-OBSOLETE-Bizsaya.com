@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/buying.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,94 +18,231 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+        .dz-success-mark, .dz-error-mark, .dz-filename {
+            display: none;
+        }
+        .dz-error-message {
+            color: red;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .dz-image {
+            text-align: center;
+        }
+        .dropzone-previews {
+            margin-top: 20px;
+        }
+        .nav-tabs>li>a:hover, .nav-tabs>li>a:focus {
+            border: 1px solid transparent;
+            background: transparent;
+        }
+    </style>
 </head>
 <body>
 
 <script>
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[ 0 ];
         if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
+        js = d.createElement(s);
+        js.id = id;
         js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'Messenger'));
 </script>
 
-    <div class="container" id="app">
+<div class="container" id="app">
 
-        <div class="page-header" style="margin-top: 0px; padding-top: 0px">
-            <h1 style="margin-top: 0px; padding-top: 0px">
-                <small>Maklumat pembelian anda</small>
-            </h1>
-        </div>
+    <div class="page-header" style="margin-top: 0px; padding-top: 0px">
+        <h3>Beli D' <small id="page-name" style="text-transform: lowercase"></small></h3>
+    </div>
 
-        <form>
+    <div id="form-tab" style="margin-bottom: 30px">
 
-            <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#detail" aria-controls="detail" role="tab">
+                    <i class="fa fa-vcard-o fa-fw"></i>
+                    <span class="hidden-xs hidden-sm">Maklumat anda</span>
+                </a>
+            </li>
+            <li role="presentation">
+                <a href="#product" aria-controls="product" role="tab">
+                    <i class="fa fa-cubes fa-fw"></i>
+                    <span class="hidden-xs hidden-sm">Maklumat produk</span>
+                </a>
+            </li>
+            <li role="presentation">
+                <a href="#payment" aria-controls="payment" role="tab">
+                    <i class="fa fa-money fa-fw"></i>
+                    <span class="hidden-xs hidden-sm">Maklumat pembayaran</span>
+                </a>
+            </li>
+            <li role="presentation">
+                <a href="#confirmation" aria-controls="confirmation" role="tab">
+                    <i class="fa fa-check fa-fw"></i>
+                    <span class="hidden-xs hidden-sm">Pengesahan</span>
+                </a>
+            </li>
+        </ul>
 
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active">
-                        <a href="#detail" aria-controls="detail" role="tab" data-toggle="tab">
-                            <i class="fa fa-vcard-o fa-fw"></i>
-                            <span class="hidden-xs hidden-sm">Maklumat anda</span>
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#product" aria-controls="product" role="tab" data-toggle="tab">
-                            <i class="fa fa-cubes fa-fw"></i>
-                            <span class="hidden-xs hidden-sm">Maklumat produk</span>
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#payment" aria-controls="payment" role="tab" data-toggle="tab">
-                            <i class="fa fa-money fa-fw"></i>
-                            <span class="hidden-xs hidden-sm">Maklumat pembayaran</span>
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#confirmation" aria-controls="confirmation" role="tab" data-toggle="tab">
-                            <i class="fa fa-check fa-fw"></i>
-                            <span class="hidden-xs hidden-sm">Pengesahan</span>
-                        </a>
-                    </li>
-                </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="detail" style="padding-top: 15px">
 
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade in active" id="detail" style="padding-top: 15px">
+                <div class="alert alert-danger" id="error-form" style="display: none">
+                    Maklumat anda tidak lengkap. Sila isikan bahagian yang bertanda <small style="color: red">*</small>
+                </div>
 
-                        <div class="form-group">
-                            <label for="form-email">Alamat emel</label>
-                            <input type="email" class="form-control" id="form-email" placeholder="Emel untuk resit pembelian">
-                        </div>
-                        <div class="form-group">
-                            <label for="form-fullname">Nama penuh <small><sup><span style="color: red;">*</span></sup></small></label>
-                            <input type="text" class="form-control" id="form-fullname" placeholder="Nama penuh">
-                        </div>
-                        <div class="form-group">
-                            <label for="form-phone">Nombor telefon <small><sup><span style="color: red;">*</span></sup></small></label>
-                            <input type="number" class="form-control" id="form-phone" placeholder="Nombor telefon untuk dihubungi">
-                        </div>
-                        <div class="form-group">
-                            <label for="form-address">Alamat penghantaran <small><sup><span style="color: red;">*</span></sup></small></label>
-                            <textarea name="form-address" id="form-address" class="form-control" rows="4" style="resize: none;"></textarea>
-                        </div>
-                        <div class="form-group text-right">
-                            <button type="button" class="btn btn-primary next-step" data-next="product">Seterusnya</button>
-                        </div>
-
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="product" style="padding-top: 15px">...</div>
-                    <div role="tabpanel" class="tab-pane fade" id="payment" style="padding-top: 15px">...</div>
-                    <div role="tabpanel" class="tab-pane fade" id="confirmation" style="padding-top: 15px">...</div>
+                <div class="form-group">
+                    <label for="form-email">Alamat emel</label>
+                    <input type="email" class="form-control" id="form-email" placeholder="Emel untuk resit pembelian">
+                </div>
+                <div class="form-group">
+                    <label for="form-fullname">Nama penuh
+                        <small><sup><span style="color: red;">*</span></sup></small>
+                    </label>
+                    <input type="text" class="form-control" id="form-fullname" placeholder="Nama penuh">
+                </div>
+                <div class="form-group">
+                    <label for="form-phone">Nombor telefon
+                        <small><sup><span style="color: red;">*</span></sup></small>
+                    </label>
+                    <input type="number" class="form-control" id="form-phone" placeholder="Nombor telefon untuk dihubungi">
+                </div>
+                <div class="form-group">
+                    <label for="form-address">Alamat penghantaran
+                        <small><sup><span style="color: red;">*</span></sup></small>
+                    </label>
+                    <textarea name="form-address" id="form-address" class="form-control" rows="4" style="resize: none;"></textarea>
+                </div>
+                <div class="form-group text-right">
+                    <button type="button" class="btn btn-default next-step" data-next="product" data-validation="true">Seterusnya</button>
                 </div>
 
             </div>
-        </form>
+            <div role="tabpanel" class="tab-pane fade" id="product" style="padding-top: 15px">
+
+                <form>
+                    <div class="form-group text-center">
+                        <img src="https://storage.googleapis.com/bizsaya_assets/tiada_gambar.jpg" alt="Gambar produk" class="img-responsive product-img">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nama produk/perkhidmatan</label>
+                        <p class="form-control-static product-name"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Maklumat produk/perkhidmatan</label>
+                        <p class="form-control-static product-description"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Harga produk/perkhidmatan</label>
+                        <p class="form-control-static product-price"></p>
+                    </div>
+                </form>
+
+                <div class="row" style="padding-top: 15px">
+                    <div class="col-xs-6">
+                        <button type="button" class="btn btn-default next-step" data-next="detail">Sebelumnya</button>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-default next-step" data-next="payment">Seterusnya</button>
+                    </div>
+                </div>
+
+                <div class="alert alert-info alert-dismissible" role="alert" style="margin-top: 25px">
+                    Maklumat pembelian ini hanya boleh proses 1 jenis produk/perkhidmatan yang akan dibeli didalam satu-satu maklumat.
+                    Sekiranya anda ingin membeli lebih daripada 1 jenis produk/perkhidmatan. Sila klik daripada
+                    menu mulakan pembelian. <br>
+                    <img src="https://storage.googleapis.com/bizsaya_assets/buying_multiple.png" alt="Mulakan pembelian" class="img-responsive img-thumbnail">
+                </div>
+
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="payment" style="padding-top: 15px">
+
+                <div class="alert alert-danger" id="error-form-payment" style="display: none">
+                    Sila muat naik bukti pembayaran anda terlebih dahulu.
+                </div>
+
+                <p>Anda boleh membuat pembayaran ke maklumat akaun yang berikut</p>
+
+                <div id="payment_account_list" style="margin-bottom: 15px; font-size: 18px"></div>
+
+                <div class="dropzone" id="payment-detail"></div>
+                <div class="dropzone-previews"></div>
+
+                <div class="row" style="padding-top: 15px">
+                    <div class="col-xs-6">
+                        <button type="button" class="btn btn-default next-step" data-next="product">Sebelumnya</button>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-default next-step" data-next="confirmation" data-upload-payment="true">Seterusnya</button>
+                    </div>
+                </div>
+
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="confirmation" style="padding-top: 15px">
+
+                <form>
+                    <div class="form-group">
+                        <label for="">Nama</label>
+                        <p class="form-control-static" id="confirm-name"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="">No. Telefon</label>
+                        <p class="form-control-static" id="confirm-phone"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Alamat</label>
+                        <p class="form-control-static" id="confirm-address"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Emel (Resit)</label>
+                        <p class="form-control-static" id="confirm-email"></p>
+                    </div>
+                    <hr style="margin: 10px 0px;">
+                    <div class="form-group text-center">
+                        <img src="https://storage.googleapis.com/bizsaya_assets/tiada_gambar.jpg" alt="Gambar produk" class="img-responsive product-img">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nama produk/perkhidmatan</label>
+                        <p class="form-control-static product-name"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Maklumat produk/perkhidmatan</label>
+                        <p class="form-control-static product-description"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Harga produk/perkhidmatan</label>
+                        <p class="form-control-static product-price"></p>
+                    </div>
+                    <div class="form-group text-center">
+                        <img src="" alt="Bukti Pembayaran berbentuk PDF" class="img-responsive" id="confirm-payment-img">
+                    </div>
+                </form>
+
+                <div class="row" style="padding-top: 15px">
+                    <div class="col-xs-6">
+                        <button type="button" class="btn btn-default next-step" data-next="payment">Sebelumnya</button>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-primary" id="confirm-buying-send">Sahkan pembelian</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
     </div>
 
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/superagent/3.5.2/superagent.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.js"></script>
+<script>var APIURL = "{{apiurl}}"</script>
 <script src="js/buying.min.js"></script>
 </body>
 </html>

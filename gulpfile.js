@@ -119,7 +119,7 @@ gulp.task('buypage', function () {
     './bower_components/moment/moment.js',
     // './bower_components/superagent/lib/client.js',
     './bower_components/sweetalert2/dist/sweetalert2.min.js',
-    './bower_components/vue/dist/vue.min.js',
+    // './bower_components/vue/dist/vue.min.js',
     './js/buying.js'
   ]).pipe(concat('buying.min.js'))
     .pipe(uglify())
