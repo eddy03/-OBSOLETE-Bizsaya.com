@@ -58,7 +58,6 @@ class Template extends Component {
           console.error('Error', response)
         } else {
           this.setState({ buying_detail: response.body.data })
-          console.log(response.body.data)
         }
       })
 
@@ -139,7 +138,7 @@ class Template extends Component {
             console.error('Error', response.body)
           } else {
             this.setState({
-              complete: false,
+              complete: true,
               saleId: response.body.data.id
             })
           }
@@ -166,6 +165,52 @@ class Template extends Component {
         back={this.back} />
     }
 
+    let container = (
+      <Tabs activeKey={this.state.activeTab} onSelect={this.doNothing} id="controlled-tab-example">
+        <Tab eventKey={1} title={<div><i className="fa fa-vcard-o fa-fw"></i><span className="hidden-xs hidden-sm" style={{paddingLeft: 10}}>Maklumat anda</span></div>}>
+          <Personaldetail
+            loading={this.state.loading}
+            buyingdetail={this.state.buying_detail}
+            receive={this.getBuyerDetail} />
+        </Tab>
+        <Tab eventKey={2} title={<div><i className="fa fa-cubes fa-fw"></i><span className="hidden-xs hidden-sm" style={{paddingLeft: 10}}>Maklumat produk</span></div>}>
+          {productForm}
+        </Tab>
+        <Tab eventKey={3} title={<div><i className="fa fa-money fa-fw"></i><span className="hidden-xs hidden-sm" style={{paddingLeft: 10}}>Maklumat pembayaran</span></div>}>
+          <Payment
+            loading={this.state.loading}
+            sales={this.state.buying_detail.sales}
+            products={this.state.buy_products}
+            product={this.state.buy_product}
+            receive={this.getPaymentDetail}
+            back={this.back} />
+        </Tab>
+        <Tab eventKey={4} title={<div><i className="fa fa-check fa-fw"></i><span className="hidden-xs hidden-sm" style={{paddingLeft: 10}}>Pengesahan</span></div>}>
+          <Confirmation
+            loading={this.state.loading}
+            buyingdetail={this.state.buying_detail}
+            buyer={this.state.buyer_detail}
+            products={this.state.buy_products}
+            product={this.state.buy_product}
+            file={this.state.file}
+            done={this.closeSale}
+            back={this.back} />
+        </Tab>
+      </Tabs>
+    )
+
+    if(this.state.complete === true) {
+      container = (
+        <div className="text-center">
+          Terima kasih atas pembelian anda.
+          Sila simpan nombor rekod pembelian anda dibawah bagi memudahkan sebarang semakkan.
+          <br/>
+          <br/>
+          <code><small>{this.state.saleId}</small></code>
+        </div>
+      )
+    }
+
     return (
       <div style={{paddingBottom: 40}}>
 
@@ -173,36 +218,7 @@ class Template extends Component {
           <h3>Beli D' <small style={{textTransform: 'lowercase'}}>{this.state.buying_detail.page_name}</small></h3>
         </div>
 
-        <Tabs activeKey={this.state.activeTab} onSelect={this.doNothing} id="controlled-tab-example">
-          <Tab eventKey={1} title={<div><i className="fa fa-vcard-o fa-fw"></i><span className="hidden-xs hidden-sm" style={{paddingLeft: 10}}>Maklumat anda</span></div>}>
-            <Personaldetail
-              loading={this.state.loading}
-              buyingdetail={this.state.buying_detail}
-              receive={this.getBuyerDetail} />
-          </Tab>
-          <Tab eventKey={2} title={<div><i className="fa fa-cubes fa-fw"></i><span className="hidden-xs hidden-sm" style={{paddingLeft: 10}}>Maklumat produk</span></div>}>
-            {productForm}
-          </Tab>
-          <Tab eventKey={3} title={<div><i className="fa fa-money fa-fw"></i><span className="hidden-xs hidden-sm" style={{paddingLeft: 10}}>Maklumat pembayaran</span></div>}>
-            <Payment
-              loading={this.state.loading}
-              sales={this.state.buying_detail.sales}
-              products={this.state.buy_products}
-              receive={this.getPaymentDetail}
-              back={this.back} />
-          </Tab>
-          <Tab eventKey={4} title={<div><i className="fa fa-check fa-fw"></i><span className="hidden-xs hidden-sm" style={{paddingLeft: 10}}>Pengesahan</span></div>}>
-            <Confirmation
-              loading={this.state.loading}
-              buyingdetail={this.state.buying_detail}
-              buyer={this.state.buyer_detail}
-              products={this.state.buy_products}
-              product={this.state.buy_product}
-              file={this.state.file}
-              done={this.closeSale}
-              back={this.back} />
-          </Tab>
-        </Tabs>
+        {container}
       </div>
     )
   }

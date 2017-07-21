@@ -14,6 +14,7 @@ class Payment extends Component {
     this.state = {
       loading: true,
       products: [],
+      product: null,
       sales: {
         banks_accounts: []
       },
@@ -31,6 +32,7 @@ class Payment extends Component {
     this.setState({
       loading: this.props.loading,
       products: this.props.products || [],
+      product: this.props.product || null,
       sales: _.merge(_SALES, this.props.sales || {})
     })
   }
@@ -41,6 +43,7 @@ class Payment extends Component {
     this.setState({
       loading: props.loading,
       products:  props.products || [],
+      product: props.product || null,
       sales: _.merge(_SALES, props.sales || {}),
     })
   }
@@ -73,9 +76,13 @@ class Payment extends Component {
   render () {
 
     let totalToPay = 0
-    _.each(this.state.products, product => {
-      totalToPay += (parseInt(product.quantity) * parseFloat(product.price))
-    })
+    if(this.state.products && this.state.products.length !== 0) {
+      _.each(this.state.products, product => {
+        totalToPay += (parseInt(product.quantity) * parseFloat(product.price))
+      })
+    } else if(this.state.product) {
+      totalToPay = parseInt(this.state.product.quantity) * parseFloat(this.state.product.price)
+    }
 
     let error = null
     if(this.state.err === true) {

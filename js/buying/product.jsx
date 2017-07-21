@@ -40,11 +40,12 @@ class Product extends Component {
     let form = this.state.form
     form[key] = e.target.value
 
-    if(key === 'quantity' && e.target.value.toString().replace(/\s/g, '').length === 0) {
-      return this.setState({ errqty: true })
-    } else {
-      this.setState({ form })
+    if(key === 'quantity') {
+      return this.setState({ errqty: e.target.value.toString().replace(/\s/g, '').length === 0 })
     }
+
+    this.setState({ form })
+
   }
 
   previousStep () {
