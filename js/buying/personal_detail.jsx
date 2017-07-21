@@ -39,12 +39,13 @@ class Personaldetail extends Component {
   componentWillUnmount () { }
 
   componentWillReceiveProps(props) {
-    if(props.buyingdetail) {
-      this.setState({
-        loading: props.loading,
-        buying_detail:  _.merge(_.cloneDeep(_FORM), props.buyingdetail)
-      })
+    let toUpdate = {loading: props.loading}
+
+    if(props.preserve === false) {
+      toUpdate.buying_detail = _.merge(_.cloneDeep(_FORM), props.buyingdetail)
     }
+
+    this.setState(toUpdate)
   }
 
   formChange (key, e) {

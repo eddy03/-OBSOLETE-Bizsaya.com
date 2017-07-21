@@ -21,7 +21,8 @@ class Template extends Component {
       buy_product: {},
       file: null,
       complete: false,
-      saleId: null
+      saleId: null,
+      preserveBuyerDetail: false
     }
 
     this.getBuyingDetail = this.getBuyingDetail.bind(this)
@@ -74,7 +75,7 @@ class Template extends Component {
   }
 
   getBuyerDetail (buyer_detail) {
-    this.setState({ buyer_detail }, () => {
+    this.setState({ buyer_detail, preserveBuyerDetail: true }, () => {
       this.setActiveTab(2)
     })
   }
@@ -171,6 +172,7 @@ class Template extends Component {
           <Personaldetail
             loading={this.state.loading}
             buyingdetail={this.state.buying_detail}
+            preserve={this.state.preserveBuyerDetail}
             receive={this.getBuyerDetail} />
         </Tab>
         <Tab eventKey={2} title={<div><i className="fa fa-cubes fa-fw"></i><span className="hidden-xs hidden-sm" style={{paddingLeft: 10}}>Maklumat produk</span></div>}>
